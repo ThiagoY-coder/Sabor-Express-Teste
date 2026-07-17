@@ -1,26 +1,19 @@
-from modelos.restaurantes import Restaurante
+from modelos.restaurants import Restaurant
+from modelos.menu.drink import Drink
+from modelos.menu.dish import Dish
 
-restaurante_praca = Restaurante('praça', 'Gourmet')
-restaurante_praca.receber_avaliacao('Thiago', 10)
-restaurante_praca.receber_avaliacao('Jorge', 4)
-restaurante_praca.receber_avaliacao('Yngrid', 8)
-"""
-O código acima cria uma instancia da classe Restaurante chamada restaurante_praca, com o nome 'praça' e a categoria 'gourmet'. Em seguida, são adicionada três avaliações ao resturante, sendo a primeira e a ultima invalida pois esta acima da nota maxima de 5, e a segunda é valida pois está dentro do intervalo permitido.
-"""
-restaurante_praca.alternar_status()
-"""
-O código acima altera o status do restaurante para ativo, pois ele inicia como inativo por padrão.
-"""
+restaurant_square = Restaurant('Square', 'Gourmet')
+restaurant_square.to_recive_assessment('Thiago', 5)
+drink_juice = Drink('Watermelon Juice', 5.0 , 'Big')
+drink_juice.apply_discount()
+dish_bread = Dish('Bread', 2.0 , 'Best bread in town')
+dish_bread.apply_discount()
+restaurant_square.add_to_the_menu(drink_juice)
+restaurant_square.add_to_the_menu(dish_bread)
+restaurant_square.toggle_status()
 
 def main():
-    Restaurante.listar_restaurantes()
+    restaurant_square.view_menu
 
-"""
-A função main() é responsalvel por dizer ao programa tudo que deve ser feito no programa, nesse caso, ela chama a função listar_restaurantes() da classe Restaurante, que exibe no console a lista de restaurantes cadastrados e outros dados dos restaurantes.
-"""
 if __name__ == '__main__':
     main()
-
-"""
-A condicional if __name__ == '__main__': é utilizada para garantir que a função main() seja executada apenas quando o arquivo app.py for executado diretamente, e não quando ele for importado como um módulo em outro arquivo.
-"""
