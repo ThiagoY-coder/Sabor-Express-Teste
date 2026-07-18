@@ -1,5 +1,5 @@
-from modelos.assessment import Assessment
-from modelos.menu.menu_item import MenuItem
+from sistema.assessment import Assessment
+from sistema.menu.menu_item import MenuItem
 
 class Restaurant:
 
@@ -19,18 +19,18 @@ class Restaurant:
     
     @classmethod
     def list_restaurants(cls):
-        print(f'{"Restaurant name".ljust(20)} | {"Category".ljust(20)} | {"Assessment".ljust(20)} | {"Status"}')
+        print(f'\n{"Restaurant".ljust(20)} | {"Category".ljust(20)} | {"Assessment".ljust(20)} | {"Status"}')
         for restaurant in cls.restaurants:
             print(f'{restaurant._name.ljust(20)} | {restaurant._category.ljust(20)} | {str(restaurant.mean_assessment).ljust(20)} | {restaurant.active}')
 
     @property
     def active(self):
-        return 'Active' if self._ative else 'Disabled'
+        return 'Active' if self._active else 'Disabled'
     
     def toggle_status(self):
         self._active = not self._active
 
-    def to_recive_assessment(self, customer, notice):
+    def to_receive_assessment(self, customer, notice):
         if 0 <= notice <= 5:
             assessment = Assessment(customer, notice)
             self._assessment.append(assessment)
@@ -50,7 +50,7 @@ class Restaurant:
 
     @property
     def view_menu(self):
-        print(f'Restaurant Menu {self._name}\n')
+        print(f'\nRestaurant Menu {self._name}\n')
         for i,item in enumerate(self._menu, start=1):
             if hasattr(item, 'description'):
                 message_dish = f'{i}. Name: {item._name} | Price: ${item._price} | Description: {item.description}'

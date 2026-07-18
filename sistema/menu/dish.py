@@ -1,4 +1,4 @@
-from modelos.menu.menu_item import MenuItem
+from sistema.menu.menu_item import MenuItem
 
 class Dish(MenuItem):
     def __init__(self, name, price, description):
